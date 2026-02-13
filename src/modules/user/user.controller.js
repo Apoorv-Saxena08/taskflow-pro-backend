@@ -19,6 +19,23 @@ async function register(req,res) {
     }
 }
 
+async function login(req,res) {
+    try{
+        const token = await userService.loginUser(req.body);
+
+        res.json({
+            message : "Login successful",
+            token
+        })
+    }
+    catch(err){
+        res.status(401).json({
+            message : err.message
+        })
+    }
+}
+
 module.exports = {
-    register
+    register,
+    login
 };
