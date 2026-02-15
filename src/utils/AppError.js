@@ -1,0 +1,14 @@
+//custom Error class to handle application specific errors
+
+class AppError extends Error{
+    constructor(message,statusCode){
+        super(message);
+        this.statusCode = statusCode;
+        this.status = statusCode>=400 && statusCode<500 ? "fail" : "error";
+        this.isOperational = true; // to differentiate between operational errors and programming errors
+
+        Error.captureStackTrace(this,this.constructor);
+    }
+}
+
+module.exports = AppError;

@@ -3,20 +3,26 @@ const taskService = require("./task.service");
 async function create(req,res) {
     try{
         const task = await taskService.createTask(req.body,req.user);
-        res.status(201).json(task);
+        res.status(201).json({
+            success:true,
+            data:task
+        });
     }
     catch(error){
-        res.status(400).json({error:error.message});
+        next(error);
     }
 }
 
 async function getMyTasks(req,res) {
     try{
         const tasks = await taskService.getMyTasks(req.user);
-        res.json(tasks);
+        res.json({
+            success:true,
+            data:tasks
+        });
     }
     catch(error){
-        res.status(400).json({error:error.message});
+        next(error);
     }
 }
 
@@ -28,20 +34,26 @@ async function update(req,res) {
             req.user
         );
 
-        res.json(updated);
+        res.json({
+            success:true,
+            data:updated
+        });
     }
     catch(error){
-        res.status(403).json({error:error.message});
+        next(error);
     }
 }
 
 async function remove(req,res){
     try{
         await taskService.deleteTask(req.params.id,req.user);
-        res.json({message:"Task deleted successfully"});
+        res.json({
+            success:true,
+            message:"Task deleted successfully"
+        });
     }
     catch(error){
-        res.status(403).json({error:error.message});
+        next(error);
     }
 }
 

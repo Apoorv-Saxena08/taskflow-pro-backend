@@ -4,8 +4,10 @@ const userRoutes = require("./modules/user/user.routes");
 const taskRoutes = require("./modules/task/task.routes");
 const app = express();
 const authMiddleware = require("./middlewares/auth.middleware");
+const errorMiddleware = require("./middlewares/error.middleware");
 
 app.use(express.json()); // for parsing application/json
+app.use(errorMiddleware); // global error handling middleware
 
 app.get("/health", (req,res)=>{
     res.json({status: "ok"});

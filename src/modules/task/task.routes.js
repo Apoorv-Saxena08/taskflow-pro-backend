@@ -4,17 +4,19 @@ const authMiddleware = require("../../middlewares/auth.middleware");
 
 const router = express.Router();
 
+// Get all tasks for the authenticated user
+router.get("/",
+    authMiddleware,
+    controller.getMyTasks
+)
+
 // Create a new task
 router.post("/",
     authMiddleware,
     controller.create
 );
 
-// Get all tasks for the authenticated user
-router.get("/",
-    authMiddleware,
-    controller.getMyTasks
-)
+
 
 // Update a task
 router.put("/:id",
