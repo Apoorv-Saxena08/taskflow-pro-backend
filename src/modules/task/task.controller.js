@@ -1,33 +1,54 @@
 const taskService = require("./task.service");
+const asyncHandler = require("../../utils/asyncHandler");
 
-async function create(req,res) {
-    try{
+const create = asyncHandler(
+    async (req,res)=>{
         const task = await taskService.createTask(req.body,req.user);
         res.status(201).json({
             success:true,
             data:task
         });
     }
-    catch(error){
-        next(error);
-    }
-}
+)
 
-async function getMyTasks(req,res) {
-    try{
+// async function create(req,res) {
+//     try{
+//         const task = await taskService.createTask(req.body,req.user);
+//         res.status(201).json({
+//             success:true,
+//             data:task
+//         });
+//     }
+//     catch(error){
+//         next(error);
+//     }
+// }
+
+const getMyTasks = asyncHandler(
+    async (req,res)=>{
         const tasks = await taskService.getMyTasks(req.user);
         res.json({
             success:true,
             data:tasks
         });
     }
-    catch(error){
-        next(error);
-    }
-}
+)
 
-async function update(req,res) {
-    try{
+// async function getMyTasks(req,res) {
+//     try{
+//         const tasks = await taskService.getMyTasks(req.user);
+//         res.json({
+//             success:true,
+//             data:tasks
+//         });
+//     }
+//     catch(error){
+//         next(error);
+//     }
+// }
+
+const update = asyncHandler(
+    async (req,res)=>{
         const updated = await taskService.updateTask(
             req.params.id,
             req.body,
@@ -39,23 +60,48 @@ async function update(req,res) {
             data:updated
         });
     }
-    catch(error){
-        next(error);
-    }
-}
+)
 
-async function remove(req,res){
-    try{
+// async function update(req,res) {
+//     try{
+//         const updated = await taskService.updateTask(
+//             req.params.id,
+//             req.body,
+//             req.user
+//         );
+
+//         res.json({
+//             success:true,
+//             data:updated
+//         });
+//     }
+//     catch(error){
+//         next(error);
+//     }
+// }
+
+const remove = asyncHandler(
+    async (req,res)=>{
         await taskService.deleteTask(req.params.id,req.user);
         res.json({
             success:true,
             message:"Task deleted successfully"
         });
     }
-    catch(error){
-        next(error);
-    }
-}
+)
+
+// async function remove(req,res){
+//     try{
+//         await taskService.deleteTask(req.params.id,req.user);
+//         res.json({
+//             success:true,
+//             message:"Task deleted successfully"
+//         });
+//     }
+//     catch(error){
+//         next(error);
+//     }
+// }
 
 module.exports = {
     create,

@@ -14,6 +14,10 @@ for John
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkxOWNhZjk1YmVlNjMyOWViYWUwMzAiLCJlbWFpbCI6ImpvaG5AdGVzdC5jb20iLCJpYXQiOjE3NzExNTA1MjksImV4cCI6MTc3MTE1NDEyOX0.SlAnEBPxSGfbB_PEPw_zTfXgDQJLSCBysFmjuELDTHM"
 }
 {
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkxOWNhZjk1YmVlNjMyOWViYWUwMzAiLCJlbWFpbCI6ImpvaG5AdGVzdC5jb20iLCJpYXQiOjE3NzExNTMyNjgsImV4cCI6MTc3MTE1Njg2OH0.4taKw2XMc5uNiVEpcb0i_yY_4x8Ncg3Gvk4D-iybQwI"
+}
+{
   "title": "Test Task",
   "description": "Learning auth",
   "status": "TODO",

@@ -7,7 +7,6 @@ const authMiddleware = require("./middlewares/auth.middleware");
 const errorMiddleware = require("./middlewares/error.middleware");
 
 app.use(express.json()); // for parsing application/json
-app.use(errorMiddleware); // global error handling middleware
 
 app.get("/health", (req,res)=>{
     res.json({status: "ok"});
@@ -34,5 +33,8 @@ app.get("/api/protected" ,
 // }
 
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OThmMDcwMmQ3NjU3ODg0ZWRmZjMxZWYiLCJlbWFpbCI6ImFwb29ydkB0ZXN0LmNvbSIsImlhdCI6MTc3MTAwMjY1MSwiZXhwIjoxNzcxMDA2MjUxfQ.ZY8pxnmoxa25y00u7-ifbuvUhP_S8Y6YAJBQHR1Aor0
+
+// Error handling middleware (must be last)
+app.use(errorMiddleware);
 
 module.exports = app;
