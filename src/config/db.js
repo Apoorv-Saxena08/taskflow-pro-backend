@@ -1,30 +1,26 @@
 //singelton db connection (Singelton design pattern)
 //we dont want to create multiple connections to the database, we want to reuse the same connection throughout the application
 // Singleton DB connection
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 const { MONGO_URI } = require("./env");
 
-let client;
-let db;
-
 async function connectDB() {
-  if (!client) {
-    client = new MongoClient(MONGO_URI);
-    await client.connect();
-
-    // ✅ Correct way to select DB
-    db = client.db("taskflow");
-
-    console.log("✅ Connected to MongoDB");
+  try {
+    await mongoose.connect(MONGO_URI);
+    console.log("✅ MongoDB Connected");
+  } catch (error) {
+    console.error("❌ DB connection failed:", error);
+    process.exit(1);
   }
-  return db;
 }
 
 function getDB() {
-  if (!db) {
-    throw new Error("DB not initialized");
-  }
-  return db;
+  return mongoose.connection.db;
 }
 
-module.exports = { connectDB, getDB };
+module.exports = {
+  connectDB,
+  getDB
+};
+
+

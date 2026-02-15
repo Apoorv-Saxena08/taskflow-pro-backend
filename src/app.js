@@ -1,6 +1,7 @@
 // yhn bnega express app
 const express = require('express');
 const userRoutes = require("./modules/user/user.routes");
+const taskRoutes = require("./modules/task/task.routes");
 const app = express();
 const authMiddleware = require("./middlewares/auth.middleware");
 
@@ -11,6 +12,7 @@ app.get("/health", (req,res)=>{
 })
 
 app.use("/api/users", userRoutes)
+app.use("/api/tasks",taskRoutes); 
 
 //TEsting an protected api 
 app.get("/api/protected" ,

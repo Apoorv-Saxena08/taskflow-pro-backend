@@ -2,3 +2,8 @@ cluster user
 taskflow_user -k1sh6isySqIbArpO
 
 mongodb+srv://taskflow_user:k1sh6isySqIbArpO@cluster0.orylxf4.mongodb.net/?appName=Cluster0
+
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkxOTRkNDYxMzk4Y2EzYzg0OWQ4YWYiLCJlbWFpbCI6ImpvZUB0ZXN0LmNvbSIsImlhdCI6MTc3MTE0ODU1MywiZXhwIjoxNzcxMTUyMTUzfQ.8VGroGzverrdesMdEOLfM8BzH6uTS42oOP1hW719or0"
+}
