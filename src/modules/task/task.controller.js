@@ -23,10 +23,10 @@ const create = asyncHandler(
 //         next(error);
 //     }
 // }
-
+//apply paging , filtering,sorting to getMyTasks
 const getMyTasks = asyncHandler(
     async (req,res)=>{
-        const tasks = await taskService.getMyTasks(req.user);
+        const tasks = await taskService.getMyTasks(req.user,req.query);
         res.json({
             success:true,
             data:tasks

@@ -11,9 +11,15 @@ async function createTask(data,user){
         userId:user.userId // yhn ._id bhi aa skta h 
     });
 }
+//applied pagination and limit to getMyTasks, also added filtering by completed status and sorting by createdAt
+async function getMyTasks(user,query){
+    const page = parseInt(query.page) || 1;
+    const limit = parseInt(query.limit) || 5;
 
-async function getMyTasks(user){
-    return await taskRepo.findTasksByUser(user.userId);
+    const completed = query.completed === 'true' ? true : query.completed === 'false' ? false : undefined;
+
+    const sort = query.sort || { createdAt: -1 };
+    return await taskRepo.findTasksByUser(user.userId, { page, limit, completed, sort });
 }
 
 async function updateTask(taskId,updateData,user){
