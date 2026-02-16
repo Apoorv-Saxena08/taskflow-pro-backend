@@ -40,7 +40,7 @@ const limiter = rateLimit({
 
 app.use("/api",limiter); // Apply rate limiting to all API routes 
 
-//app.use(cors()); // Enable CORS for all routes
+//app.use(cors()); // Enable CORS for all routes Cross-Origin Resource Sharing
 app.use(cors({
     origin: process.env.CLIENT_URL || "*",
     credentials: true

@@ -6,10 +6,15 @@ const { MONGO_URI } = require("./env");
 
 async function connectDB() {
   try {
-    await mongoose.connect(MONGO_URI);
+    console.log("🔌 Attempting to connect with URI:", MONGO_URI.replace(/:[^:]*@/, ":****@")); // Hide password
+    await mongoose.connect(MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 5000,
+    });
     console.log("✅ MongoDB Connected");
   } catch (error) {
-    console.error("❌ DB connection failed:", error);
+    console.error("❌ DB connection failed:", error.message);
+    console.error("Full error:", error);
     process.exit(1);
   }
 }
