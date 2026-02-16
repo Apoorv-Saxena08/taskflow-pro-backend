@@ -2,11 +2,22 @@
 const express = require('express');
 const userRoutes = require("./modules/user/user.routes");
 const taskRoutes = require("./modules/task/task.routes");
+const morgan = require("morgan"); //LOGGING
 const app = express();
 const authMiddleware = require("./middlewares/auth.middleware");
 const errorMiddleware = require("./middlewares/error.middleware");
 
 app.use(express.json()); // for parsing application/json
+
+//Real companies depends on LOGS , vhn console krke ni dekh skte
+if(process.env.NODE_ENV === "development"){
+    app.use(morgan("dev"));
+}
+
+if(process.env.NODE_ENV === "production"){
+    // app.use(morgan("combined"));
+    //security rules
+}
 
 app.get("/health", (req,res)=>{
     res.json({status: "ok"});

@@ -4,9 +4,10 @@ const asyncHandler = require("../../utils/asyncHandler");
 const create = asyncHandler(
     async (req,res)=>{
         const task = await taskService.createTask(req.body,req.user);
-        res.status(201).json({
+        res.status(200).json({
             success:true,
-            data:task
+            data:task,
+            results:task.length
         });
     }
 )
@@ -27,9 +28,10 @@ const create = asyncHandler(
 const getMyTasks = asyncHandler(
     async (req,res)=>{
         const tasks = await taskService.getMyTasks(req.user,req.query);
-        res.json({
+        res.status(200).json({
             success:true,
-            data:tasks
+            data:tasks,
+            results:tasks.length
         });
     }
 )
@@ -55,9 +57,10 @@ const update = asyncHandler(
             req.user
         );
 
-        res.json({
+        res.status(200).json({
             success:true,
-            data:updated
+            data:updated,
+            results:updated ? 1 : 0
         });
     }
 )
@@ -85,7 +88,8 @@ const remove = asyncHandler(
         await taskService.deleteTask(req.params.id,req.user);
         res.json({
             success:true,
-            message:"Task deleted successfully"
+            message:"Task deleted successfully",
+            results:1
         });
     }
 )
