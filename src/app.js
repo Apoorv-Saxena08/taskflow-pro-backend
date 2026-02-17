@@ -65,6 +65,14 @@ app.get("/health", (req,res)=>{
     res.json({status: "ok"});
 })
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "TaskFlow API is running 🚀"
+  });
+});
+
+
 app.use("/api/users", userRoutes)
 app.use("/api/tasks",taskRoutes); 
 
