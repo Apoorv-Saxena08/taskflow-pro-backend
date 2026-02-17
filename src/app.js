@@ -56,8 +56,14 @@ app.use(cors({
 // CLIENT_URL=https://yourfrontend.com
 
 app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true }));
 
-app.use(mongoSanitize()); // to prevent NoSQL injection attacks
+app.use(
+  mongoSanitize({
+    replaceWith: "_"
+  })
+);
+ // to prevent NoSQL injection attacks
 
 //All routes here
 
