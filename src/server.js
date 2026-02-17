@@ -1,6 +1,17 @@
 const app = require("./app");
 const { connectDB } = require("./config/db");
 const { PORT } = require("./config/env");
+import mongoSanitize from "express-mongo-sanitize";
+
+app.use(mongoSanitize());
+
+app.use(
+  mongoSanitize({
+    replaceWith: "_",
+    allowDots: true
+  })
+);
+
 
 async function startServer() {
   try {
